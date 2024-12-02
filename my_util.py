@@ -1,4 +1,5 @@
 from pathlib import WindowsPath
+import numpy as np
 
 
 def load_data(file_path: WindowsPath):
@@ -27,3 +28,23 @@ def load_data(file_path: WindowsPath):
         return f"{e}"
     else:
         return files
+
+
+def is_increasing_or_decreasing(lst):
+    arr = np.array(lst)
+
+    arr = arr.astype(int)
+
+    diff = np.diff(arr)
+
+    increasing_or_decreasing = np.all(diff > 0) or np.all(diff < 0)
+
+    return increasing_or_decreasing
+
+
+def is_true(num1: str, num2: str):
+    result = int(num1) - int(num2)
+    if abs(result) in [1, 2, 3]:
+        return True
+    else:
+        return False
