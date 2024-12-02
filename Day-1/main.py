@@ -8,21 +8,29 @@ def main():
 
     str_output = my_util.load_data(FILE_PATH)
 
-    # part_one(str_output)
+    part_one(str_output)
 
+    part_two(str_output)
+
+
+def part_two(str_output):
+    list_one, list_two = get_lists(str_output)
+
+    total = 0
+    for count in range(len(list_one)):
+        total = total + (
+                list_two.count(list_one[count]) * int(list_one[count]))
+    print(total)
+
+
+def get_lists(str_output):
     list_one = []
     list_two = []
     for val in str_output:
         lst = val.split();
         list_one.append(lst[0])
         list_two.append(lst[1])
-
-    print(list_one, list_two)
-
-    total = 0
-    for count in range(len(list_one)):
-        total = total + (list_two.count(list_one[count]) *  int(list_one[count]))
-    print(total)
+    return list_one, list_two
 
 
 def part_one(str_output):
