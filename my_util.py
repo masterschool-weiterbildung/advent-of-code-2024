@@ -30,6 +30,12 @@ def load_data(file_path: WindowsPath):
         return files
 
 
+def get_indices_of_sign_change(lst):
+    arr = np.array(lst)
+    sign_changes = np.where(np.diff(np.sign(arr)) != 0)[0]
+    return sign_changes.tolist()
+
+
 def is_increasing_or_decreasing(lst):
     arr = np.array(lst)
 
@@ -48,3 +54,9 @@ def is_true(num1: str, num2: str):
         return True
     else:
         return False
+
+
+def is_safe(val):
+    comparisons = [is_true(val[i], val[i + 1])
+                   for i in range(len(val) - 1)]
+    return comparisons
