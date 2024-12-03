@@ -30,10 +30,19 @@ def load_data(file_path: WindowsPath):
         return files
 
 
-def get_indices_of_sign_change(lst):
-    arr = np.array(lst)
-    sign_changes = np.where(np.diff(np.sign(arr)) != 0)[0]
-    return sign_changes.tolist()
+def read_all(file_path: WindowsPath):
+    try:
+        if "txt" in file_path:
+            with open(file_path, "r") as handle:
+                files = handle.read()
+    except FileNotFoundError as e:
+        return f"{e}"
+    except IOError as e:
+        return f"{e}"
+    except Exception as e:
+        return f"{e}"
+    else:
+        return files
 
 
 def is_increasing_or_decreasing(lst):
